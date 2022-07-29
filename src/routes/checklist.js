@@ -7,10 +7,10 @@ const Checklist = require('../models/checklist');
 router.get('/', async (req, res) => {
   try {
     let checklist = await Checklist.find({});
-    res.status(200).json(checklist);
+    res.status(200).render('checklists/index', { checklists: checklist })
   } catch (error) {
-    console.log("error", error)
     res.status(422).json(error);
+    res.status(422).render('pages/error', {error: "Erro ao exibir listas!"});
   }
 });
 
@@ -30,10 +30,11 @@ router.post('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     let checklist = await Checklist.findById(req.params.id);
-    res.status(200).json(checklist);
+    res.status(200).render('checklists/show', { checklists: checklist })
   } catch (error) {
     console.log("error", error)
     res.status(422).json(error);
+    res.status(422).render('pages/error', {error: "Erro ao exibir listas!"});
   }
 })
 
