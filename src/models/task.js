@@ -10,4 +10,4 @@ const tasklistSchema = mongoose.Schema({
   }
 })
 
-module.exposrts = mongoose.model('Task', tasklistSchema);
+module.exports = mongoose.model('Task', tasklistSchema);

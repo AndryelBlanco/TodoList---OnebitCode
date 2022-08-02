@@ -56,7 +56,8 @@ router.post('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    let checklist = await Checklist.findById(req.params.id);
+    //A gente quer que devolva as tasks associadas com essa checklist, por isso passamos o populate. Logo o mongoose vai buscar essas tasks e trazer para popular esse array de tasks
+    let checklist = await Checklist.findById(req.params.id).populate('tasks'); 
     res.status(200).render('checklists/show', { checklists: checklist })
   } catch (error) {
     console.log("error", error)
